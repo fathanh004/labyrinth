@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01f9ee2a07c9fdc40a2c99a5102c378c, type: 3}
-  m_Name: Purple Coin
+  m_Script: {fileID: 11500000, guid: c4618b21c64c7bc43886b2f1aa6f3f1b, type: 3}
+  m_Name: Player Win Event
   m_EditorClassIdentifier: 
-  value: 3
-  material: {fileID: 2100000, guid: 6b9b0b57f91159344bdb59b485753d07, type: 2}
+  OnInvoked:
+    m_PersistentCalls:
+      m_Calls: []

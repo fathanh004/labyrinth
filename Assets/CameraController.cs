@@ -20,21 +20,21 @@ public class CameraController : MonoBehaviour
 
         switch (touches.Length)
         {
-            case 1:
-                Drag(touches);
-                break;
+            // case 1:
+            //     Drag(touches);
+            //     break;
             case >= 2:
                 Zoom(touches);
                 break;
         }
     }
 
-    private void Drag(Touch[] touches)
-    {
-        var touch = Input.GetTouch(0);
+    // private void Drag(Touch[] touches)
+    // {
+    //     var touch = Input.GetTouch(0);
 
-        cam.transform.position -= new Vector3(touch.deltaPosition.x, 0, touch.deltaPosition.y) * frustrumScale;
-    }
+    //     cam.transform.position -= new Vector3(touch.deltaPosition.x, 0, touch.deltaPosition.y) * frustrumScale;
+    // }
 
     private void Zoom(Touch[] touches)
     {
@@ -56,7 +56,7 @@ public class CameraController : MonoBehaviour
             frustrumScale = frustrumHeight / Screen.height;
 
             cam.transform.position -= Vector3.up * deltaDistance * frustrumScale;
-            var y = Mathf.Clamp(cam.transform.position.y, 10, 100);
+            var y = Mathf.Clamp(cam.transform.position.y, 50, 100);
             cam.transform.position = new Vector3(cam.transform.position.x, y, cam.transform.position.z);
 
         }

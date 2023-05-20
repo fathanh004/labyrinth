@@ -9,8 +9,7 @@ public class AudioManager : MonoBehaviour
     static AudioSource bgmInstance;
     static AudioSource sfxInstance;
     [SerializeField] AudioSource bgm;
-    [SerializeField] AudioSource sfxBall;
-    [SerializeField] AudioSource sfxTurret;
+    [SerializeField] AudioSource sfx;
     [SerializeField] GameObject bgmSlider;
     [SerializeField] GameObject sfxSlider;
     [SerializeField] TMP_Text bgmValueSliderText;
@@ -27,12 +26,8 @@ public class AudioManager : MonoBehaviour
         }
         if (PlayerPrefs.HasKey("SFXVolume"))
         {
-            sfxBall.volume = PlayerPrefs.GetFloat("SFXVolume");
-            if (sfxTurret != null)
-            {
-                sfxTurret.volume = PlayerPrefs.GetFloat("SFXVolume");
-            }
-            sfxSlider.GetComponent<UnityEngine.UI.Slider>().value = sfxBall.volume;
+            sfx.volume = PlayerPrefs.GetFloat("SFXVolume");
+            sfxSlider.GetComponent<UnityEngine.UI.Slider>().value = sfx.volume;
         }
         if (PlayerPrefs.HasKey("Mute"))
         {
@@ -40,32 +35,20 @@ public class AudioManager : MonoBehaviour
             {
                 toggleMute.GetComponent<UnityEngine.UI.Toggle>().isOn = true;
                 bgm.mute = true;
-                sfxBall.mute = true;
-                if (sfxTurret != null)
-                {
-                    sfxTurret.mute = true;
-                }
+                sfx.mute = true;
             }
             else
             {
                 toggleMute.GetComponent<UnityEngine.UI.Toggle>().isOn = false;
                 bgm.mute = false;
-                sfxBall.mute = false;
-                if (sfxTurret != null)
-                {
-                    sfxTurret.mute = false;
-                }
+                sfx.mute = false;
             }
         }
         else
         {
             toggleMute.GetComponent<UnityEngine.UI.Toggle>().isOn = false;
             bgm.mute = false;
-            sfxBall.mute = false;
-            if (sfxTurret != null)
-            {
-                sfxTurret.mute = false;
-            }
+            sfx.mute = false;
         }
 
         if (bgmInstance != null)
@@ -111,16 +94,12 @@ public class AudioManager : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("SFXVolume"))
         {
-            sfxBall.volume = PlayerPrefs.GetFloat("SFXVolume");
+            sfx.volume = PlayerPrefs.GetFloat("SFXVolume");
         }
-        sfxBall.volume = sfxSlider.GetComponent<UnityEngine.UI.Slider>().value;
-        if (sfxTurret != null)
-        {
-            sfxTurret.volume = sfxSlider.GetComponent<UnityEngine.UI.Slider>().value;
-        }
-        var volume100 = (int)(sfxBall.volume * 100);
+        sfx.volume = sfxSlider.GetComponent<UnityEngine.UI.Slider>().value;
+        var volume100 = (int)(sfx.volume * 100);
         sfxValueSliderText.text = volume100.ToString();
-        PlayerPrefs.SetFloat("SFXVolume", sfxBall.volume);
+        PlayerPrefs.SetFloat("SFXVolume", sfx.volume);
 
     }
 
@@ -137,12 +116,12 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySFX(AudioClip clip)
     {
-        if (sfxBall.isPlaying)
+        if (sfx.isPlaying)
         {
-            sfxBall.Stop();
+            sfx.Stop();
         }
-        sfxBall.clip = clip;
-        sfxBall.Play();
+        sfx.clip = clip;
+        sfx.Play();
     }
 
     public void Mute()
@@ -150,21 +129,13 @@ public class AudioManager : MonoBehaviour
         if (toggleMute.GetComponent<UnityEngine.UI.Toggle>().isOn)
         {
             bgm.mute = true;
-            sfxBall.mute = true;
-            if (sfxTurret != null)
-            {
-                sfxTurret.mute = true;
-            }
+            sfx.mute = true;
             PlayerPrefs.SetInt("Mute", 1);
         }
         else
         {
             bgm.mute = false;
-            sfxBall.mute = false;
-            if (sfxTurret != null)
-            {
-                sfxTurret.mute = false;
-            }
+            sfx.mute = false;
             PlayerPrefs.SetInt("Mute", 0);
         }
     }

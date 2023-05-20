@@ -13,10 +13,11 @@ public class Coin : MonoBehaviour
 
     private void Start()
     {
-        visual.GetComponent<MeshRenderer>().material = coinData.material;
         if (baseAnimation != null)
         {
             baseAnimation.Animate(visual);
         }
     }
+
+
 }

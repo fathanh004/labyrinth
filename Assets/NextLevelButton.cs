@@ -14,7 +14,9 @@ public class NextLevelButton : MonoBehaviour
         if (nextSceneBuildIndex == -1)
         {
             this.gameObject.SetActive(false);
+            Debug.Log("No more level");
         }
+        Debug.Log("Next level is " + nextSceneBuildIndex);
     }
 
     public void NextLevel()

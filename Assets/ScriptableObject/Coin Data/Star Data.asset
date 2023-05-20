@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01f9ee2a07c9fdc40a2c99a5102c378c, type: 3}
-  m_Name: Red Coin
+  m_Name: Star Data
   m_EditorClassIdentifier: 
-  value: 2
-  material: {fileID: 2100000, guid: 415271e13a18daf4399ba274ff5733cd, type: 2}
+  value: 1
+  material: {fileID: 2100000, guid: cd2df6691e959164cbeec59dd04018ad, type: 2}

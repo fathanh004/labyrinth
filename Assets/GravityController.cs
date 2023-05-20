@@ -6,7 +6,7 @@ public class GravityController : MonoBehaviour
 {
     [SerializeField] float acceleration = 9.8f;
 
-    Vector3 gravityOffset = Vector3.zero;
+    Quaternion gravityOffset = Quaternion.identity;
 
     bool isActive = true;
     void Start()
@@ -21,7 +21,7 @@ public class GravityController : MonoBehaviour
     {
         if (isActive)
         {
-            Physics.gravity = GetGravityFromSensor() + gravityOffset;
+            Physics.gravity = gravityOffset * GetGravityFromSensor();
         }
         else
         {
@@ -31,7 +31,7 @@ public class GravityController : MonoBehaviour
 
     public void CalibrateGravity()
     {
-        gravityOffset = Vector3.down * acceleration - GetGravityFromSensor();
+        gravityOffset = Quaternion.FromToRotation(GetGravityFromSensor(), Vector3.down * acceleration);
     }
 
     public Vector3 GetGravityFromSensor()
